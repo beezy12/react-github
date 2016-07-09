@@ -31,7 +31,10 @@ var Card = React.createClass({
     return (
       <div>
         <img src={this.state.avatar_url} width="80" />
-        <h3>{this.state.name}</h3>
+        <div>
+          <h3>{this.state.name}</h3>
+          <h4>public repos: {this.state.public_repos}</h4>
+        </div>
         <hr/>
       </div>
     )
@@ -39,11 +42,16 @@ var Card = React.createClass({
 })
 
 var Main = React.createClass({
+  getInitialState: function() {
+    return {logins: []}
+  },
   render: function() {
+    var cards = this.state.logins.map(function(login) {
+      return (<Card login={login} />)
+    })
     return (
       <div>
-        <Card login='bbleds'/>
-        <Card login='beezy12'/>
+        {cards}
       </div>
 
     )
