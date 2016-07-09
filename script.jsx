@@ -7,6 +7,13 @@
 // the state to display my github profile pic and name and whatnot. however, my name beezy12 is still
 // hard coded into the github url, so in the next branch we are going to change that....
 
+// branch3. all I did was add the login varibles to Main. im making branch4 now....
+
+// branch4. still, with my Cards, the name's are manually entered. so we are making an array of cards that
+// we can add to.
+
+
+
 
 var Card = React.createClass({
   getInitialState: function() {
@@ -14,7 +21,7 @@ var Card = React.createClass({
   },
   componentDidMount: function() {
     var component = this
-    $.get('https://api.github.com/users/beezy12', function(data) {
+    $.get('https://api.github.com/users/' + this.props.login, function(data) {
       component.setState(data)
     })
   },
@@ -33,7 +40,8 @@ var Main = React.createClass({
   render: function() {
     return (
       <div>
-        <Card />
+        <Card login='bbleds'/>
+        <Card login='beezy12'/>
       </div>
 
     )
