@@ -4,7 +4,7 @@ var Card = React.createClass({
     return (
       <div>
         <img src='' />
-        <h3>name here</h3>
+        <h3></h3>
         <hr/>
       </div>
     )
