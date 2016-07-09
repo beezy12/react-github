@@ -12,6 +12,8 @@
 // branch4. still, with my Cards, the name's are manually entered. so we are making an array of cards that
 // we can add to.
 
+// branch5. emptied the array, and making a form that allows user's to add to the array
+
 
 
 
