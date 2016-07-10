@@ -12,8 +12,8 @@
 // branch4. still, with my Cards, the name's are manually entered. so we are making an array of cards that
 // we can add to.
 
-// branch5. emptied the array, and making a form that allows user's to add to the array
-
+// branch5. emptied the array, and making a form that allows user's to add to the array.
+// this part got crazy.
 
 
 
@@ -31,19 +31,53 @@ var Card = React.createClass({
     return (
       <div>
         <img src={this.state.avatar_url} width="80" />
-        <h3>{this.state.name}</h3>
+        <div>
+          <h3>{this.state.name}</h3>
+          <h4>public repos: {this.state.public_repos}</h4>
+        </div>
         <hr/>
       </div>
     )
   }
 })
 
-var Main = React.createClass({
+// prevent default prevents the form from submitting normally and refreshing the page
+// also, use ref= to get React to access the value of the text input
+var Form = React.createClass({
+  handleSubmit: function(e) {
+    e.preventDefault()
+    var loginInput = ReactDOM.findDOMNode(this.refs.login)
+
+    // add the card here...and reset the input back to empty
+    this.props.addCard(loginInput.value)
+    loginInput.value = ''
+  },
   render: function() {
     return (
+      <form onSubmit={this.handleSubmit}>
+        <input placeholder="enter github login name" ref="login" />
+        <button>Add</button>
+      </form>
+    )
+  }
+})
+
+
+var Main = React.createClass({
+  getInitialState: function() {
+    return {logins: []}
+  },
+  addCard: function(loginToAdd) {
+    this.setState({logins: this.state.logins.concat(loginToAdd)})
+  },
+  render: function() {
+    var cards = this.state.logins.map(function(login) {
+      return (<Card login={login} />)
+    })
+    return (
       <div>
-        <Card login='bbleds'/>
-        <Card login='beezy12'/>
+        <Form addCard={this.addCard}/>
+        {cards}
       </div>
 
     )
