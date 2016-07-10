@@ -15,6 +15,8 @@
 // branch5. emptied the array, and making a form that allows user's to add to the array.
 // this part got crazy.
 
+// ******   as the state changes.....the render auto updates? im pretty sure
+
 
 
 var Card = React.createClass({
@@ -62,7 +64,7 @@ var Form = React.createClass({
   }
 })
 
-
+// as the state changes.....the render auto updates? im pretty sure
 var Main = React.createClass({
   getInitialState: function() {
     return {logins: []}
